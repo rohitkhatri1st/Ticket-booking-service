@@ -101,9 +101,23 @@ func UpdateTicketTiming(tId string, time string) error {
 	return errors.New(constants.INVALID_TICKET)
 }
 
+// CountOfTickets returns the count Of total Tickets booked for a show time.
+func CountOfTickets(time string) int8 {
+	count := int8(0)
+	for _, v := range TicketData {
+		if v.Timing == time {
+			count++
+		}
+	}
+	return (count)
+}
+
 //BookTicket recieves request from service and creates newly booked tickets
 //to Database.
 func BookTicket(user models.User, time string, seat_no string) (error, *string) {
+	if CountOfTickets(time) > 19 {
+		return errors.New(constants.MAX_TICKET_CAPACITY_REACHED), nil
+	}
 	if v, ok := Userdata[user.PhoneNum]; ok {
 		ticket := models.Ticket{
 			IsBooked:     true,
