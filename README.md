@@ -8,3 +8,6 @@ It support the following business cases:
 ● An endpoint to delete a particular ticket.
 ● An endpoint to view the user’s details based on the ticket id.
 ● Automatically Delete a ticket if that ticket is expired.
+
+Since it is a small program, I have used in-memory database(maps) as it works faster.
+Currently the program has few limitations and bugs which needs to be taken care of.
