@@ -1,3 +1,1 @@
 package customerrors
-
-func 

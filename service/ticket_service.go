@@ -1,43 +1,43 @@
 package service
 
 import (
-	"MyProjects/Zomentum/constants"
-	"MyProjects/Zomentum/dao"
-	"MyProjects/Zomentum/models"
 	"net/http"
+	"ticket-booking/constants"
+	"ticket-booking/dao"
+	"ticket-booking/models"
 )
 
 type TicketService struct {
 }
 
-//BookTicket recieves request from handler and Perform business Logic for booking a ticket.
+// BookTicket recieves request from handler and Perform business Logic for booking a ticket.
 func (t *TicketService) BookTicket(u1 models.User, time string, seat_no string) (error, *string) {
 	err, tId := dao.BookTicket(u1, time, seat_no)
 	return err, tId
 }
 
-//UpdateTicketTiming recieves request from handler and Perform business Logic for Updating
-//a ticket time.
+// UpdateTicketTiming recieves request from handler and Perform business Logic for Updating
+// a ticket time.
 func (t *TicketService) UpdateTicketTiming(tId string, time string) error {
 	err := dao.UpdateTicketTiming(tId, time)
 	return err
 }
 
-//ViewAllTickets recieves request from handler and Perform business Logic for viewing
+// ViewAllTickets recieves request from handler and Perform business Logic for viewing
 // all tickets at a particular time.
 func (t *TicketService) ViewAllTickets(time string) []models.Ticket {
 	tickets := dao.ViewAllTicketsAttime(time)
 	return tickets
 }
 
-//DeleteTicket recieves request from handler and Perform business Logic to delete
+// DeleteTicket recieves request from handler and Perform business Logic to delete
 // a ticket corresponding to tickedId
 func (t *TicketService) DeleteTicket(ticketId string) error {
 	err := dao.DeleteTicket(ticketId)
 	return err
 }
 
-//ViewUSerDetailsByTicketID recieves request from handler and Perform business Logic to view
+// ViewUSerDetailsByTicketID recieves request from handler and Perform business Logic to view
 // User details of the person who holds right of that ticket.
 func (t *TicketService) ViewUSerDetailsByTicketID(ticketId string) models.GenericResponse {
 	u, err := dao.ViewUserDetails(ticketId)
@@ -63,8 +63,8 @@ func (t *TicketService) ViewUSerDetailsByTicketID(ticketId string) models.Generi
 	return gr
 }
 
-//CheckExpiryAndDeleteTickets recieves request from handler and Perform business Logic for
-//checking and deleting expired tickets.
+// CheckExpiryAndDeleteTickets recieves request from handler and Perform business Logic for
+// checking and deleting expired tickets.
 func (t *TicketService) CheckExpiryAndDeleteTickets() {
 	dao.CheckExpiryAndDeleteTickets()
 }

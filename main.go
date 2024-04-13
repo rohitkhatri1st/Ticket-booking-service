@@ -1,11 +1,11 @@
 package main
 
 import (
-	"MyProjects/Zomentum/dao"
-	"MyProjects/Zomentum/routes"
-	"MyProjects/Zomentum/service"
 	"fmt"
 	"net/http"
+	"ticket-booking/dao"
+	"ticket-booking/routes"
+	"ticket-booking/service"
 	"time"
 )
 
@@ -18,8 +18,8 @@ func main() {
 }
 
 /*
-	checkExpiryTickets checks if any ticket in database is
-	expired and deletes that ticket from db.
+checkExpiryTickets checks if any ticket in database is
+expired and deletes that ticket from db.
 */
 func checkExpiryTickets() {
 	ts := service.TicketService{}

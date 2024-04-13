@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"MyProjects/Zomentum/constants"
-	"MyProjects/Zomentum/models"
 	"errors"
 	"fmt"
+	"ticket-booking/constants"
+	"ticket-booking/models"
 )
 
 var Userdata map[string]models.User = map[string]models.User{}
@@ -51,7 +51,7 @@ func InitiateDatabase() {
 	TicketData[t2.ID] = t2
 }
 
-//ViewAllTicketsAttime recieves request from service and reads from Database and returns
+// ViewAllTicketsAttime recieves request from service and reads from Database and returns
 // slice of tickets corresponding to a particular time
 func ViewAllTicketsAttime(time string) []models.Ticket {
 	tickets := []models.Ticket{}
@@ -63,7 +63,7 @@ func ViewAllTicketsAttime(time string) []models.Ticket {
 	return tickets
 }
 
-//ViewUserDetails recieves request from service and reads from Database and returns a
+// ViewUserDetails recieves request from service and reads from Database and returns a
 // pointer to the user who holds rights to a particular ticket_Id
 func ViewUserDetails(ticketId string) (*models.User, error) {
 	if v, ok := TicketData[ticketId]; ok {
@@ -79,7 +79,7 @@ func ViewUserDetails(ticketId string) (*models.User, error) {
 	return nil, err
 }
 
-//DeleteTicket recieves request from service and deletes a ticket from Database if the ticket
+// DeleteTicket recieves request from service and deletes a ticket from Database if the ticket
 // with requested tId is available.
 func DeleteTicket(tId string) error {
 	if v, ok := TicketData[tId]; ok {
@@ -90,7 +90,7 @@ func DeleteTicket(tId string) error {
 	return errors.New(constants.INVALID_TICKET)
 }
 
-//UpdateTicketTiming recieves request from service and modifies the Database for the requested
+// UpdateTicketTiming recieves request from service and modifies the Database for the requested
 // tId with new timing.
 func UpdateTicketTiming(tId string, time string) error {
 	if v, ok := TicketData[tId]; ok {
@@ -112,8 +112,8 @@ func CountOfTickets(time string) int8 {
 	return (count)
 }
 
-//BookTicket recieves request from service and creates newly booked tickets
-//to Database.
+// BookTicket recieves request from service and creates newly booked tickets
+// to Database.
 func BookTicket(user models.User, time string, seat_no string) (error, *string) {
 	if CountOfTickets(time) > 19 {
 		return errors.New(constants.MAX_TICKET_CAPACITY_REACHED), nil
@@ -138,7 +138,7 @@ func BookTicket(user models.User, time string, seat_no string) (error, *string) 
 	return errors.New(constants.NO_USER_FOUND_), nil
 }
 
-//CheckExpiryAndDeleteTickets recieves request from service and deletes the expired
+// CheckExpiryAndDeleteTickets recieves request from service and deletes the expired
 // tickets from the Database
 func CheckExpiryAndDeleteTickets() {
 	for key, val := range TicketData {

@@ -1,13 +1,14 @@
 package routes
 
 import (
-	"MyProjects/Zomentum/handler"
+	"ticket-booking/handler"
+
 	"github.com/gorilla/mux"
 )
 
 var AllRoutes *mux.Router = mux.NewRouter()
 
-//InititateRoutes is creating all the routes for the server.
+// InititateRoutes is creating all the routes for the server.
 func InitiateRoutes() {
 	AllRoutes.Methods("POST").Path("/bookticket").
 		Name("BookTicket").HandlerFunc(handler.BookTicketHandler)

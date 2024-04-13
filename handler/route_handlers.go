@@ -1,17 +1,17 @@
 package handler
 
 import (
-	"MyProjects/Zomentum/constants"
-	"MyProjects/Zomentum/models"
-	"MyProjects/Zomentum/service"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+	"ticket-booking/constants"
+	"ticket-booking/models"
+	"ticket-booking/service"
 )
 
-//	BookTicketHandler handles all the ticket Booking requests from clients.
-//	This writes response to the ResponseWriter object based on return
-//	value from service.
+// BookTicketHandler handles all the ticket Booking requests from clients.
+// This writes response to the ResponseWriter object based on return
+// value from service.
 func BookTicketHandler(w http.ResponseWriter, r *http.Request) {
 	ts := service.TicketService{}
 	body, err := ioutil.ReadAll(r.Body)
@@ -40,9 +40,9 @@ func BookTicketHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-//	UpdateTicketTimingHandler handles updating all the ticket timing update requests from clients.
-//	This writes response to the ResponseWriter object based on return
-//	value from service.
+// UpdateTicketTimingHandler handles updating all the ticket timing update requests from clients.
+// This writes response to the ResponseWriter object based on return
+// value from service.
 func UpdateTicketTimingHandler(w http.ResponseWriter, r *http.Request) {
 	ts := service.TicketService{}
 	body, err := ioutil.ReadAll(r.Body)
@@ -70,9 +70,9 @@ func UpdateTicketTimingHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(constants.SUCCESS))
 }
 
-//	ViewAllTicketsHandler handles request for viewing Tickets at a particular time.
-//	This writes response to the ResponseWriter object based on return
-//	value from service.
+// ViewAllTicketsHandler handles request for viewing Tickets at a particular time.
+// This writes response to the ResponseWriter object based on return
+// value from service.
 func ViewAllTicketsHandler(w http.ResponseWriter, r *http.Request) {
 	ts := service.TicketService{}
 	time := r.FormValue("at_time")
@@ -89,9 +89,9 @@ func ViewAllTicketsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//	DeleteTicketHandler handles request for deleting a Particular Ticket by taking ticket_id as query Parameter.
-//	This writes response to the ResponseWriter object based on return
-//	value from service.
+// DeleteTicketHandler handles request for deleting a Particular Ticket by taking ticket_id as query Parameter.
+// This writes response to the ResponseWriter object based on return
+// value from service.
 func DeleteTicketHandler(w http.ResponseWriter, r *http.Request) {
 	tId := r.FormValue("ticket_id")
 	ts := service.TicketService{}
@@ -105,10 +105,10 @@ func DeleteTicketHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//	ViewUSerDetailsByTicketIDHandler handles request for viewing User details based on ticket_id
-//	requested as query parameter from client.
-//	This writes response to the ResponseWriter object based on return
-//	value from service.
+// ViewUSerDetailsByTicketIDHandler handles request for viewing User details based on ticket_id
+// requested as query parameter from client.
+// This writes response to the ResponseWriter object based on return
+// value from service.
 func ViewUSerDetailsByTicketIDHandler(w http.ResponseWriter, r *http.Request) {
 	ts := service.TicketService{}
 	tId := r.FormValue("ticket_id")
